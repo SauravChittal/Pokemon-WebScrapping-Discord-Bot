@@ -35,6 +35,8 @@ async def on_message(message):
             tiers the Pokemon has analysis in. The thing in () are optionals, it automatically
             reverts to SS otherwise. Please note, the list presented might not be fully adequate
             since it depends on the users to fill out all the tiers.
+
+            For Pokemon with multiple words, replace spaces with "-". For example, Tapu Koko becomes Tapu-Koko.
             ```""")
 
     if message.content.startswith(r"/sets"):

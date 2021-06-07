@@ -35,25 +35,13 @@ Careful Nature
 
 The set(s) for Hippowdon are from within the OU tier from your specified (or SS) generation, since there was some error with your specified tier, hence the default sets are shown. For sets from a specific tier, type the tier at the end```"""
 
-    # Incorrect Pokemon, Generation or Tier test or the Pokemon doesnt have an analysis for the given generation and tier
-    # Ideally they should be different but I haven't implemented that fully
-    assert discobot_helper.get_sets("/sets Hippodown SS") == "```The Pokemon doesn't have an analysis in said generation and tier```"
+    # Testing for correct Pokemon is done within get_tiers because I wanted to populate it with something
 
     # A Pokemon which was Dexit'd
     assert discobot_helper.get_sets("/sets Eelektross") == "```The Pokemon doesn't have an analysis in said generation and tier```"
 
-    # Finally, we also check whether adding to the file works or not. Rightfully, it will only work once, change Tiers.txt to test this
-    # some = open("Tiers.txt")
-    # old_str = some.read()
-    # discobot_helper.get_sets("/sets Blissey Uber")
-    # some.close()
-    # othersome = open("Tiers.txt")
-    # new_str = othersome.read()
-    # assert old_str != new_str
-    # othersome.close()
-
     # Also have to check for tiers with more than 1 word
-    assert discobot_helper.get_sets("/sets Hydreigon Almost Any Ability") == """Hydreigon @ Choice Scarf
+    assert discobot_helper.get_sets("/sets Hydreigon Almost Any Ability") == """```Hydreigon @ Choice Scarf
 Ability: Regenerator
 EVs: 252 SpA / 4 SpD / 252 Spe
 Timid Nature
@@ -62,9 +50,18 @@ Timid Nature
 - U-turn
 - Fire Blast
 
-The set(s) for Hydreigon are from within the Almost Any Ability tier. For sets from a specific tier, type the tier at the end"""
+The set(s) for Hydreigon are from within the Almost Any Ability tier. For sets from a specific tier, type the tier at the end```"""
 
     assert discobot_helper.get_sets("/sets Hydreigon Almost Any Ability") == discobot_helper.get_sets("/sets Hydreigon SS Almost Any Ability")
 
 def test_get_tiers():
-    pass
+    # get_tiers returns the string in a fairly weird way, haven't fixed it yet, since it doesn't matter that much
+    # Normal Enquiry
+    assert discobot_helper.get_tiers("/tier Hippowdon") == "```OU    Stabmons    Monotype    Almost-Any-Ability    ```"
+    assert discobot_helper.get_tiers("/tier Hippowdon") == discobot_helper.get_tiers("/tier Hippowdon SS")
+
+    # Checking if Pokemon or Generation is entered correctly
+    assert discobot_helper.get_tiers("/tier Hippodown") == "```The Pokemon you entered is incorrect```"
+    assert discobot_helper.get_tiers("/tier Hippowdon BDSP") == "```The Generation you entered is incorrect```"
+
+    # I won't check for incorrect entered values since it's the exact same as get_sets
