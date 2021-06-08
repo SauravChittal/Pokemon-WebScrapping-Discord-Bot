@@ -17,4 +17,4 @@ correct statement can be given.
 
 Currently, the bot is fairly slow, it can take quite some time to retreive the information and submit it due to internet speeds and such. The solution to solving this problem would be to add caches so that there is no need to go onto to the website to retrive the necessary information and hence reduce times by a lot.
 
-These are just a few of the bugs I've found out, I'm sure after some more testing, I'll find out more bugs.
+These are just a few of the bugs and issues I've found out, I'm sure after some more testing, I'll find out more bugs.
